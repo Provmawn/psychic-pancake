@@ -1,25 +1,25 @@
 node {
-  def app
-  stage ('Clone Repository') {
-    checkout scm
-  }
+  try {
 
-  stage ('Build Image') {
-    app = docker.build("dev-test-api:${env.BUILD_ID}", '-f ./dockerfiles/Dockerfile .')
-  }
+    def app
+    stage ('Clone Repository') {
+      checkout scm
+    }
 
-  stage ('Test Python') {
-    app.inside {
-      sh 'python ./app/main.py'
-    } 
-  }
-  post {
-    success {
-      sh 'passed'      
+    stage ('Build Image') {
+      app = docker.build("dev-test-api:${env.BUILD_ID}", '-f ./dockerfiles/Dockerfile .')
     }
-    failure {
-      sh 'failed'
+
+    stage ('Test Python') {
+      app.inside {
+        sh 'python ./app/main.py'
+      } 
     }
+
   }
-  
+  finally {
+    println('Build Result: ' + currentBuild.result)
+  }
+   
 }
+
