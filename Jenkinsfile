@@ -1,5 +1,5 @@
-node {
-  try {
+try {
+  node {
 
     def app
     stage ('Clone Repository') {
@@ -17,9 +17,7 @@ node {
     }
 
   }
-  finally {
-    println('Build Result: ' + currentBuild.result)
-  }
-   
 }
-
+finally {
+  println('Build Result: ' + currentBuild.result)
+}
