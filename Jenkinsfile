@@ -19,5 +19,5 @@ try {
   }
 }
 finally {
-  println('Build Result: ' + currentBuild.result)
+  println('Build Result: ' + currentBuild.currentResult)
 }
