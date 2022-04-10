@@ -5,7 +5,7 @@ node {
   }
 
   stage ('Build Image') {
-    app = docker.build("dev-test-api:${env.BUILD_ID}", ./dockerfiles)
+    app = docker.build("dev-test-api:${env.BUILD_ID}", './dockerfiles')
   }
 
   stage ('Test Python') {
