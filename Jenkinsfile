@@ -15,7 +15,6 @@ try {
         sh 'python ./app/main.py'
       } 
     }
-
   }
 }
 finally {
